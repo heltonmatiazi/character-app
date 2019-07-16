@@ -1,10 +1,12 @@
 //incrementando ID para próximo insert
-let _nextId = 1;
-// ID do livro sendo editado
+let _nextId = 4;
+// ID do personagem sendo editado
 let _activeId = 0;
 
 const character_FORM = $("#character-form");
 const character_TABLE = $("#characterTable");
+
+
 
 function characterEditHandler() {
     const row = $(this).parents("tr");
@@ -21,23 +23,28 @@ function characterDeleteHandler() {
     $(this).parents("tr").remove();
 }
 
+
+
 function characterSubmitHandler(e) {
-    e.preventDefault();
+        e.preventDefault();
 
-    if (characterForm.hasErrors()) {
-        return;
-    }
+        if(characterForm.hasErrors() === true){
+            alert("Nomes de personagem precisam ser únicos");
+            return;   
+        };
+ 
+        if (characterForm.getSubmitButtonText() === "Atualizar") {
+            characterTable.updateInTable(_activeId);
+            characterForm.setSubmitButtonText("Adicionar Personagem");
+        } else {
+            characterTable.addToTable(_activeId);
+            _nextId += 1;
+        }
+        characterForm.clear();   
+    };
 
-    if (characterForm.getSubmitButtonText() === "Atualizar") {
-        characterTable.updateInTable(_activeId);
-        characterForm.setSubmitButtonText("Adicionar Personagem");
-    } else {
-        characterTable.addToTable(_activeId);
-        _nextId += 1;
-    }
 
-    characterForm.clear();
-}
+
 
 character_TABLE.on('click', '.character-edit', characterEditHandler);
 character_TABLE.on('click', '.character-delete', characterDeleteHandler);
