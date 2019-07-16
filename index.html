@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap-theme.min.css" />
-
+    
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -38,14 +38,14 @@
                     <table id="characterTable" class="table table-bordered table-condensed table-striped">
                         <thead>
                         <tr>
-                            <th>Nome </th>
-                            <th>Nível</th>
-                            <th>Saúde</th>
+                            <th id="name">Nome </th>
+                            <th id="level">Nível</th>
+                            <th id="health">Saúde</th>
                             <th>Editar</th>
                             <th>Eliminar</th>
                         </tr>
                         </thead>
-                        <tbody></tbody>
+                        <tbody id="characterTableBody"></tbody>
                     </table>
                 </div>
 
@@ -57,19 +57,19 @@
                                 <div class="form-group">
                                     <label for="name">Nome</label>
                                     <input type="text" name="name" id="character_name" class="form-control input-lg"
-                                           placeholder="Nome do Personagem">
+                                           placeholder="Nome do Personagem" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="level">Nível</label>
-                                    <input type="text" name="level" id="character_level" class="form-control input-lg"
-                                           placeholder="Nível do personagem">
+                                    <input type="number" name="level" id="character_level" class="form-control input-lg"
+                                           placeholder="Nível do personagem" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="health">Saúde</label>
-                                    <input type="text" name="health" id="character_health" class="form-control input-lg"
-                                           placeholder="Editora">
+                                    <input type="number" name="health" id="character_health" class="form-control input-lg"
+                                           placeholder="saúde" required>
                                 </div>
 
                                 <div class="form-group">
@@ -83,6 +83,8 @@
                 </div>
             </div>
         </div>
+
+       
 
         <script type="text/html" id="characterTemplate">
             <tr>
@@ -108,5 +110,9 @@
         <script src="js/form.js"></script>
         <script src="js/table.js"></script>
         <script src="js/main.js"></script>
+        <script src="js/jsonParse.js"></script>
+       
+        
+      
     </body>
 </html>
