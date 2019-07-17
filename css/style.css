@@ -8,6 +8,7 @@
   margin:10px 5px;  
 }
 .overlay{
+  display: none;
   height: 100%;
   width: 100%;
   position: fixed;
@@ -26,3 +27,14 @@
     text-align: center; 
     margin-top: 30px; 
   }
+
+.conditionalBtn{
+  display: none;
+}
+[data-id] {
+  cursor: pointer;
+}
+.error-msg p{
+  color:red;
+  font-size: 15px;
+}

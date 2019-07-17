@@ -26,6 +26,7 @@ const characterForm = (function($){
             name: characterName.val(),
             level: characterLevel.val(),
             health: characterHealth.val(),
+          
         };
     };
 

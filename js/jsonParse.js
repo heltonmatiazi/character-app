@@ -10,7 +10,7 @@ $(document).ready(function(){
         },
         success:function(data){
             $(data.characters).each(function(index,value){
-                var record ="<tr id="+value.id+"><td>"+value.name+
+                var record ="<tr id="+value.id+" class="+"tableindex"+"  data-id="+value.id+"><td>"+value.name+
                                 "</td><td>"+value.level+"</td><td>"+value.health+"</td>"+
                               "<\tr>";
                 $("#characterTableBody").append(record);
