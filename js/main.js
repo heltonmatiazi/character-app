@@ -5,13 +5,13 @@ let _activeId = 0;
 
 const character_FORM = $("#character-form");
 const character_TABLE = $("#characterTable");
-
-
+const cancel_create = $("#cancelButton");
+const updateFormBtn = $("#characterAddBtn");
 
 function characterEditHandler() {
     const row = $(this).parents("tr");
     const cols = row.children("td");
-
+    // TODO: atualizar para pegar o id da <tr>
     _activeId = $($(cols[3]).children("button")[0]).data("id");
 
     characterForm.setData($(cols[0]).text(), $(cols[1]).text(), $(cols[2]).text());
@@ -26,7 +26,7 @@ function characterDeleteHandler() {
 
 
 function characterSubmitHandler(e) {
-        e.preventDefault();
+    e.preventDefault();
 
         if(characterForm.hasErrors() === true){
             alert("Nomes de personagem precisam ser únicos");
@@ -40,12 +40,24 @@ function characterSubmitHandler(e) {
             characterTable.addToTable(_activeId);
             _nextId += 1;
         }
-        characterForm.clear();   
+        characterForm.clear(); 
     };
 
 
+function updateFormController(){
+    $( ".overlay" ).removeClass( "hidden" );
+    $( ".overlay" ).fadeIn( "slow");
+}
 
 
+function cancelCreation(){
+    $( ".overlay" ).fadeOut( "slow");
+
+}
+
+
+updateFormBtn.on('click', updateFormController)
+cancel_create.on('click',cancelCreation);
 character_TABLE.on('click', '.character-edit', characterEditHandler);
 character_TABLE.on('click', '.character-delete', characterDeleteHandler);
 character_FORM.on('submit', characterSubmitHandler);

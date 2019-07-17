@@ -1,0 +1,28 @@
+.marginFix{
+    margin:10px 5px;
+}
+.clear,.clear:before,.clear:after{
+    clear:both;
+}
+.btnfix{
+  margin:10px 5px;  
+}
+.overlay{
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  background-color: rgb(0,0,0); /*para browsers antigos*/
+  background-color: rgba(0,0,0, 0.9); 
+  overflow-x: hidden; /* desabilitar scroll */
+  transition: 0.5s;
+}
+.overlay-content {
+    position: relative;
+    top: 10%; 
+    width: 100%; 
+    text-align: center; 
+    margin-top: 30px; 
+  }

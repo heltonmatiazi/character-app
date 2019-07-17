@@ -18,70 +18,90 @@
     <![endif]-->
 </head>
     <body>
-        <!--
-             Esse  aplicativo demonstra um ciclo de Crud simples com as seguintes regras:
-                Insert/Update/Delete na inteface
-            Optei pelo uso de Bootstrap para facilitar o desenvolvimento das telas. 
-
-            O app controla personagens de um jogo, e o usuário pode cadastrar novos
-            personagens, com seu nível e pontos de vida, e pode editá-los ou excluí-los durante o jogo. 
-        -->
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <h2 class="text-center"> Personagens</h2>
                 </div>
             </div>
-
+            
             <div class="row">
-                <div class="col-md-6">
-                    <table id="characterTable" class="table table-bordered table-condensed table-striped">
-                        <thead>
-                        <tr>
-                            <th id="name">Nome </th>
-                            <th id="level">Nível</th>
-                            <th id="health">Saúde</th>
-                            <th>Editar</th>
-                            <th>Eliminar</th>
-                        </tr>
-                        </thead>
-                        <tbody id="characterTableBody"></tbody>
-                    </table>
-                </div>
 
-                <div class="col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">Inserir Novo Personagem</div>
-                        <div class="panel-body">
-                            <form id="character-form">
-                                <div class="form-group">
-                                    <label for="name">Nome</label>
-                                    <input type="text" name="name" id="character_name" class="form-control input-lg"
-                                           placeholder="Nome do Personagem" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="level">Nível</label>
-                                    <input type="number" name="level" id="character_level" class="form-control input-lg"
-                                           placeholder="Nível do personagem" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="health">Saúde</label>
-                                    <input type="number" name="health" id="character_health" class="form-control input-lg"
-                                           placeholder="saúde" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <button type="submit" id="updateButton" class="btn btn-lg btn-primary">
-                                        Adicionar Personagem
-                                    </button>
-                                </div>
-                            </form>
+                    <div class="col-md-3 "></div>
+                    <div class="col-md-6">
+                        <div class="marginFix ">
+                            <button type='button' id="characterAddBtn" class='btn btn-lg btn-primary'>
+                                Adicionar Personagem
+                            </button>
+                            <button type='button' id="characterUpdateBtn" class='btn btn-lg btn-primary'>
+                                Editar Personagem
+                            </button>
+                            <button type='button' id="characterDeleteBtn" class='btn btn-lg btn-danger'>
+                                Excluir Personagem
+                            </button>
                         </div>
-                    </div>
+                        
+                        <table id="characterTable" class="table table-bordered table-condensed table-striped">
+                            <thead>
+                            <tr>
+                                <th id="name">Nome </th>
+                                <th id="level">Nível</th>
+                                <th id="health">Saúde</th>
+                                
+                            </tr>
+                            </thead>
+                            <tbody id="characterTableBody"></tbody>
+                        </table>
+                   
                 </div>
             </div>
+            <div class="row">
+                <div class="overlay hidden" id="mainNav">
+                        <div class="overlay-content">
+                                <div class="col-md-3 "></div>
+                                <div class="col-md-6">
+                                    <div  id="panelHead" class="panel panel-primary ">
+                                        <div class="panel-heading" id="panelTitle">Inserir Novo Personagem</div>
+                                            <div class="panel-body">
+                                                <form id="character-form">
+                                                    <div class="form-group">
+                                                        <label for="name">Nome</label>
+                                                            <input type="text" name="name" id="character_name" class="form-control input-lg"
+                                                                placeholder="Nome do Personagem" required>
+                                                    </div>
+                
+                                                    <div class="form-group">
+                                                        <label for="level">Nível</label>
+                                                        <input type="number" name="level" id="character_level" class="form-control input-lg"
+                                                            placeholder="Nível do personagem" required>
+                                                    </div>
+                
+                                                    <div class="form-group">
+                                                        <label for="health">Saúde</label>
+                                                        <input type="number" name="health" id="character_health" class="form-control input-lg"
+                                                            placeholder="saúde" required>
+                                                    </div>
+                                                    <div class="wrapper">
+                                                        <div class="form-group pull-left btnfix">
+                                                            <button type="submit" id="updateButton" class="btn btn-lg btn-success">
+                                                            Salvar
+                                                            </button>
+                                                        </div>
+                                                        <div class="form-group pull-left btnfix">
+                                                                <button type="button" id="cancelButton" class="btn btn-lg btn-secondary">
+                                                                Cancelar
+                                                                </button>
+                                                    </div>
+                                                    <div class="clear"></div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                        </div>
+                </div>
+                
+                </div>
         </div>
 
        
@@ -91,22 +111,13 @@
                 <td><%- name %></td>
                 <td><%- level %></td>
                 <td><%- health %></td>
-                <td>
-                    <button type='button' class='character-edit btn btn-default' data-id='<%- id %>'>
-                        <span class='glyphicon glyphicon-edit'></span>
-                    </button>
-                </td>
-                <td>
-                    <button type='button' class='character-delete btn btn-default' data-id='<%- id %>'>
-                        <span class='glyphicon glyphicon-remove'></span>
-                    </button>
-                </td>
             </tr>
         </script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="css/style.css">
         <script src="js/form.js"></script>
         <script src="js/table.js"></script>
         <script src="js/main.js"></script>
