@@ -1,7 +1,7 @@
 //incrementando ID para próximo insert
 let _nextId = 4;
 // ID do personagem sendo editado
-let _activeId = 0;
+var _activeId = 0;
 
 const character_FORM = $("#character-form");
 const character_TABLE = $("#characterTable");
@@ -14,6 +14,7 @@ function characterEditHandler() {
     const cols = row.children("td");
 
     _activeId = $(row).data("id");
+   
     characterForm.setData($(cols[0]).text(), $(cols[1]).text(), $(cols[2]).text());
     characterForm.setSubmitButtonText("Atualizar");
 }
@@ -42,7 +43,7 @@ function characterSubmitHandler(e) {
     characterForm.clear(); 
     $(".error-msg p").text("");
     $( ".overlay" ).fadeOut( "slow");
-    sortTable();
+   
 };
 
 
@@ -62,20 +63,22 @@ function cancelCreation(){
 
 
 $(document).ready(function(){
-    // um balaio de gato que cumpre sua função é um bom balaio de gato
     $(document.body).on('click','tr[data-id]',function(){
-        $("#characterTableBody tr").css("background-color", "#fff");
-        $(this).css("background-color", "grey");
-        $('.conditionalBtn').fadeIn("fast");
-        $("#characterTableBody tr").removeClass("selected");
-        $(this).addClass("selected");
+       
+            $("#characterTableBody tr").css("background-color", "#fff");
+            $(this).css("background-color", "grey");
+            $('.conditionalBtn').fadeIn("fast");
+            $("#characterTableBody tr").removeClass("selected");
+            $(this).addClass("selected");
+        
+      
 
         $("#characterUpdateBtn").click(function(){
             $("#panelTitle").text("Editando Personagem");
             characterEditHandler();
             $( ".overlay" ).fadeIn("slow");
-            sortTable();
         });
+
     });
 });
 

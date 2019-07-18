@@ -1,5 +1,5 @@
 const characterTable = (function($){
-    const character_TABLE_BODY = $("#characterTable tbody");
+    let character_TABLE_BODY = $("#characterTable tbody");
    
 
     function characterTableBuilder(id) {
@@ -15,15 +15,19 @@ const characterTable = (function($){
             character_TABLE_BODY.children(".selected").after(characterTableBuilder(_nextId));
         } else {
             character_TABLE_BODY.append(characterTableBuilder(_nextId));
+            sortTable();
         }
+        
     }
 
     function _findcharacterRowById(id) {
-        return $("#characterTable tr[data-id='" + id + "']");
+        return $("#characterTableBody tr[data-id="+"" + id  +""+ "]");
+      
     }
 
     function updateInTable(id){
         const row = _findcharacterRowById(id);
+        character_TABLE_BODY = $("#characterTable tbody");
         const $row = $(row);
 
         // Adiciona a linha modificada na tabela
@@ -40,6 +44,8 @@ const characterTable = (function($){
 
 
 // table sort
+
+//TODO: refazer com jquery
 function sortTable() {
     var table, rows, switching, i, x, y, shouldSwitch;
     table = document.getElementById("characterTable");
